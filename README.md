@@ -31,6 +31,12 @@ Add this service provider to your `config/app.php` file.
 Webtack\Modules\ModulesServiceProvider::class
 ```
 
+If the loader still does not see your modules, run the command
+
+```bash
+composer dump-autoload
+```
+
 ### Artisan
 
 #### vendor:publish
