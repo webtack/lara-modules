@@ -49,3 +49,9 @@ http://localhost/path/to/project/test
 http://localhost/path/to/project/api/test
 ```
 ##### to test the module's functionality
+
+## License
+
+The MIT License (MIT). Please see [License File][link-license] for more information.
+
+[link-license]: https://github.com/webtack/lara-modules/blob/master/LICENSE.md
