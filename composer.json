@@ -2,7 +2,6 @@
     "name": "webtack/lara-modules",
     "license": "MIT",
     "type": "library",
-	"version": "dev-master",
     "authors": [
         {
             "name": "Ruslan Bilyshko",
