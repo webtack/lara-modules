@@ -1,0 +1,25 @@
+{
+    "name": "webtack/lara-modules",
+    "license": "MIT",
+    "type": "library",
+	"version": "dev-master",
+    "authors": [
+        {
+            "name": "Ruslan Bilyshko",
+            "email": "ruslan.bilyshko@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Webtack\\Modules\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
