@@ -2,6 +2,7 @@
     "name": "webtack/lara-modules",
     "license": "MIT",
     "type": "library",
+    "keywords": ["laravel", "module structure"],
     "authors": [
         {
             "name": "Ruslan Bilyshko",
