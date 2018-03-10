@@ -71,6 +71,21 @@ class Module {
 	}
 	
 	/**
+	 * @return \Webtack\Modules\Eloquent\Module | mixed
+	 */
+	public static function current($object, $attribute = null) {		
+		
+		$reflection = new \ReflectionClass($object);
+		$fileName = $reflection->getFileName();$pathToArray = explode(DIRECTORY_SEPARATOR, $fileName);
+		$pathToArray = array_reverse($pathToArray);
+		$indexParentRoot = array_search(modules_config('root'),$pathToArray);
+		$moduleName = $pathToArray[$indexParentRoot-1];
+		$instance = static::get($moduleName);
+		
+		return $attribute ? $instance->getAttributes($attribute) : $instance;
+	}
+	
+	/**
 	 * @param $attributes
 	 *
 	 * @return \Webtack\Modules\Eloquent\Module
