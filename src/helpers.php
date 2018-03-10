@@ -12,7 +12,7 @@ if (!function_exists('modules_config')) {
 	 * @return \Illuminate\Config\Repository|mixed
 	 */
 	function modules_config(string $key) {
-		return config('module.' . $key);
+		return config('modules.' . $key);
 	}
 }
 

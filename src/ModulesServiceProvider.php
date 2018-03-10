@@ -14,7 +14,7 @@ class ModulesServiceProvider extends ServiceProvider {
 	public function boot() {
 		$this->app->register("Webtack\Modules\Providers\ModulesRouteServiceProvider");
 		
-		$this->mergeConfigFrom(__DIR__ . './../config/modules.php', 'module');
+		$this->mergeConfigFrom(__DIR__ . './../config/modules.php', 'modules');
 		$this->publishes([__DIR__ . '/../config/' => config_path() . '/']);
 		$this->publishes([__DIR__ . '/../modules/' => base_path(modules_config('root'))]);
 		
