@@ -26,13 +26,16 @@ class ModulesRouteServiceProvider extends ServiceProvider {
 		
 		foreach ($modules as $module) {
 			$routes = $module->routes;
+			$routesFolder = 'routes'.DIRECTORY_SEPARATOR;
 			
 			if ($routes) {
 				foreach ($routes as $route) {
-					if (strrpos($route, "web")) {
+					if (strrpos($route, $routesFolder."web")) {
+						
 						$this->mapWebRoute($route, $module->namespace);
 					}
-					elseif (strrpos($route, "api")) {
+					elseif (strrpos($route, $routesFolder."api")) {
+						
 						$this->mapApiRoute($route, $module->namespace);
 					}
 				}
