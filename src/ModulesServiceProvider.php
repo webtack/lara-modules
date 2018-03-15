@@ -20,6 +20,8 @@ class ModulesServiceProvider extends ServiceProvider {
 		
 		$modules = Module::all();
 		
+		
+		
 		foreach ($modules as $module) {
 			
 			if ($module->helpers) {
@@ -48,6 +50,13 @@ class ModulesServiceProvider extends ServiceProvider {
 			if ($listeners) {
 				$this->registerListeners($listeners);
 			}
+			
+			// Register module providers
+			$providers = config($module.".providers");
+			if($providers) {
+				$this->registerProviders($providers);
+			}
+			
 		}		
 	}
 	
@@ -62,6 +71,12 @@ class ModulesServiceProvider extends ServiceProvider {
 			foreach ($aliases as $aliasName => $className) {
 				$this->app->alias($aliasName, $className);
 			}
+		}
+	}
+	
+	protected function registerProviders(array $providersArray) {
+		foreach ($providersArray as $provider) {
+			$this->app->register($provider);
 		}
 	}
 	
