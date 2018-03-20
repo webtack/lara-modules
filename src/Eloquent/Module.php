@@ -80,9 +80,8 @@ class Module {
 		$pathToArray = array_reverse($pathToArray);
 		$indexParentRoot = array_search(modules_config('root'),$pathToArray);
 		$moduleName = $pathToArray[$indexParentRoot-1];
-		$instance = static::get($moduleName);
 		
-		return $attribute ? $instance->getAttributes($attribute) : $instance;
+		return $attribute ? static::get($moduleName)->getAttributes($attribute) : static::get($moduleName);
 	}
 	
 	/**
