@@ -5,8 +5,7 @@ use Webtack\Modules\Traits\HasAttributes;
 /**
  * Class Module
  * Class for managing the properties of an Object of the Module type 
- * 
- * @package Webtack\Modules\Config
+ *
  */
 class Module {
 	
