@@ -44,13 +44,15 @@ class ModuleStorage {
 		$this->attributes = collect();
 		
 		foreach ($modules as $module) {
-			$modulePath = $this->getModulePath($module);
+			$moduleRelativePath = $this->getModulePath($module);
+			$modulePath = base_path($moduleRelativePath);
 			$moduleName = $this->getModuleName($module);
 			
 			$this->setAttributes($this->getModuleName($module), [
 				"name" => $moduleName,
 				"namespace" => $this->getNamespace($moduleName),
 				"path" => $modulePath,
+				"relativePath" => $moduleRelativePath,
 				"routes" => $this->findRealPathFiles("/.php$/", $modulePath."/routes"),
 				"views" => $this->isDir($modulePath, "views"),
 				"migrations" => $this->isDir($modulePath, "migrations"),
@@ -68,7 +70,7 @@ class ModuleStorage {
 		$replaceString = $separator . $root . $separator;
 		$modulePath = $root . $separator . str_replace($delimiter, $replaceString, $module);
 		
-		return base_path($modulePath);
+		return $modulePath;
 	}
 	
 	protected function getModuleName(string $module) {	
