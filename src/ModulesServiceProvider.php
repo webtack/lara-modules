@@ -2,6 +2,7 @@
 
 use Event;
 use Illuminate\Support\ServiceProvider;
+use Webtack\Modules\Commands\MakeMigration;
 use Webtack\Modules\Eloquent\Module;
 
 /**
@@ -18,10 +19,17 @@ class ModulesServiceProvider extends ServiceProvider {
 		$this->publishes([__DIR__ . '/../config/' => config_path() . '/']);
 		$this->publishes([__DIR__ . '/../modules/' => base_path(modules_config('root'))]);
 		
+		/**
+		 * Registartion commands
+		 */
+		if ($this->app->runningInConsole()) {
+			$this->commands([
+				MakeMigration::class
+			]);
+		}
+		
 		$modules = Module::all();
-		
-		
-		
+				
 		foreach ($modules as $module) {
 			
 			if ($module->helpers) {
