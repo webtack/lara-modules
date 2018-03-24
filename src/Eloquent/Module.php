@@ -4,7 +4,7 @@ use Webtack\Modules\Traits\HasAttributes;
 
 /**
  * Class Module
- * Class for managing the properties of an Object of the Module type 
+ * Class for managing the properties of an Object of the Module type
  *
  */
 class Module {
@@ -72,15 +72,24 @@ class Module {
 	/**
 	 * @return \Webtack\Modules\Eloquent\Module | mixed
 	 */
-	public static function current($object, $attribute = null) {		
+	public static function current($object, $attribute = null) {
 		
 		$reflection = new \ReflectionClass($object);
-		$fileName = $reflection->getFileName();$pathToArray = explode(DIRECTORY_SEPARATOR, $fileName);
+		$fileName = $reflection->getFileName();
+		$pathToArray = explode(DIRECTORY_SEPARATOR, $fileName);
 		$pathToArray = array_reverse($pathToArray);
-		$indexParentRoot = array_search(modules_config('root'),$pathToArray);
-		$moduleName = $pathToArray[$indexParentRoot-1];
+		$indexParentRoot = array_search(modules_config('root'), $pathToArray);
+		$moduleName = $pathToArray[ $indexParentRoot - 1 ];
 		
-		return $attribute ? static::get($moduleName)->getAttributes($attribute) : static::get($moduleName);
+		if ($attribute) {
+			
+			return $attribute === 'name'
+				? $moduleName
+				: static::get($moduleName)->getAttributes($attribute);
+		}
+		else {
+			return static::get($moduleName);
+		}
 	}
 	
 	/**
